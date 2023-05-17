@@ -30,7 +30,7 @@ namespace healthcareMIS.Pages.Doctor
 
 			try
 			{
-				String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=healthcareMIS;Integrated Security=True";
+				String connectionString = "Data Source=DESKTOP-26CN3O2\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
 
 				using (SqlConnection connection = new SqlConnection(connectionString))
 				{
