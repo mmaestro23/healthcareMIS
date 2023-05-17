@@ -72,7 +72,7 @@ namespace healthcareMIS.Pages.Doctor
 
 	public class DoctorInfo
 	{
-		public String doctor_id { get; set; }
+		public int doctor_id { get; set; }
 		public String firstname { get; set; }
 		public String lastname { get; set; }
 		public String specialization { get; set; }
