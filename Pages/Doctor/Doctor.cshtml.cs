@@ -30,7 +30,7 @@ namespace healthcareMIS.Pages.Doctor
 
 			try
 			{
-				String connectionString = "Data Source=DRKST-MTTR\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
+				String connectionString = "Data Source=DESKTOP-26CN3O2\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
 
 				using (SqlConnection connection = new SqlConnection(connectionString))
 				{
@@ -72,7 +72,7 @@ namespace healthcareMIS.Pages.Doctor
 
 	public class DoctorInfo
 	{
-		public String doctor_id { get; set; }
+		public int doctor_id { get; set; }
 		public String firstname { get; set; }
 		public String lastname { get; set; }
 		public String specialization { get; set; }
