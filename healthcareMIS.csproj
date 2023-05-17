@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\doctor\" />
+    <Folder Include="Pages\patients\" />
+  </ItemGroup>
+
 </Project>
