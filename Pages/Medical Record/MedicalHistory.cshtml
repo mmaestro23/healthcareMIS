@@ -1,0 +1,82 @@
+﻿@page
+@model healthcareMIS.Pages.Medical_Record.MedicalHistoryModel
+@{
+}
+
+<br>
+<h2>Doctor's Form</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
+<form method="post">
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Hospital Vist Day</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="address" value="@Model.medicInfo">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">diagnosis</label>
+		<div class="col-sm-6">
+			<textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" value="@Model.medicInfo"></textarea>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Treatment</label>
+		<div class="col-sm-6">
+			<textarea class="form-control" id="treatment" name="treatment" rows="3" value="@Model.medicInfo"></textarea>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Medication</label>
+		<div class="col-sm-6">
+			<textarea class="form-control" id="Medication" name="Medication" rows="3" value="@Model.medicInfo"></textarea>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Notes</label>
+		<div class="col-sm-6">
+			<textarea class="form-control" id="Notes" name="Notes" rows="3" value="@Model.medicInfo"></textarea>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Patient Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="pname" value="@Model.medicInfo">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Doctor Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="dname" value="@Model.medicInfo">
+		</div>
+	</div>
+	
+
+	@if (Model.successMessage.Length > 0)
+	{
+		<div class="row mb-3">
+			<div class="col sm-9">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>@Model.successMessage</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	}
+
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+		</div>
+	</div>
+</form>
