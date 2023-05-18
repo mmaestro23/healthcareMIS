@@ -1,10 +1,10 @@
 ﻿@page
-@model healthcareMIS.Pages.Register.RegisterModel
+@model healthcareMIS.Pages.Doctor.UpdateDoctorModel
 @{
 }
 
 <br>
-<h2>Register's Form</h2>
+<h2>Doctor's Form</h2>
 
 @if (Model.errorMessage.Length > 0)
 {
@@ -15,37 +15,43 @@
 }
 
 <form method="post">
+	<input type="hidden" name="id" value="@Model.doctorInfo.doctor_id" />
 	<div class="row mb-3">
-		<label class="col-sm-3 col-form-label">firstname</label>
+		<label class="col-sm-3 col-form-label">First Name</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="firstname" value="@Model.registerInfo.firstname">
+			<input type="text" class="form-control" name="firstname" value="@Model.doctorInfo.firstname">
 		</div>
 	</div>
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Last Name</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="lastname" value="@Model.registerInfo.lastname">
+			<input type="text" class="form-control" name="lastname" value="@Model.doctorInfo.lastname">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Specialization</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="specialization" value="@Model.doctorInfo.specialization">
 		</div>
 	</div>
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Email</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="email" value="@Model.registerInfo.email">
+			<input type="text" class="form-control" name="email" value="@Model.doctorInfo.email">
 		</div>
 	</div>
 	<div class="row mb-3">
-		<label class="col-sm-3 col-form-label">username</label>
+		<label class="col-sm-3 col-form-label">Phone</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="username" value="@Model.registerInfo.username">
+			<input type="text" class="form-control" name="phone" value="@Model.doctorInfo.phone">
 		</div>
 	</div>
 	<div class="row mb-3">
-		<label class="col-sm-3 col-form-label">password</label>
+		<label class="col-sm-3 col-form-label">Address</label>
 		<div class="col-sm-6">
-			<input type="password" class="form-control" name="password" value="@Model.registerInfo.password">
+			<input type="text" class="form-control" name="address" value="@Model.doctorInfo.address">
 		</div>
 	</div>
-
 
 	@if (Model.successMessage.Length > 0)
 	{
@@ -61,7 +67,7 @@
 
 	<div class="row mb-3">
 		<div class="offset-sm-3 col-sm-3 d-grid">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Update</button>
 		</div>
 		<div class="col-sm-3 d-grid">
 			<a class="btn btn-outline-primary" href="/" role="button">Cancel</a>

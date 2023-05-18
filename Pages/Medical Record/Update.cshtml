@@ -1,7 +1,8 @@
 ﻿@page
-@model healthcareMIS.Pages.Medical_Record.MedicalHistoryModel
+@model healthcareMIS.Pages.Medical_Record.UpdateModel
 @{
 }
+
 
 <br>
 <h2>Medical History</h2>
@@ -15,25 +16,27 @@
 }
 
 <form method="post">
+	<input type="hidden" name="id" value="@Model.medicInfo.mh_id" />
 
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Patient ID</label>
 		<div class="col-sm-6">
 			<select class="form-select" name="patientId">
 				<option value="">Select a patient</option>
-				@foreach (var item in Model.Patients)
+				@foreach (var item in Model.Patient)
 				{
 					<option value="@item.id">@item.name</option>
 				}
 			</select>
 		</div>
 	</div>
+
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Patient ID</label>
 		<div class="col-sm-6">
 			<select class="form-select" name="doctorId">
 				<option value="">Select a doctor</option>
-				@foreach (var item in Model.Doctors)
+				@foreach (var item in Model.Doctor)
 				{
 					<option value="@item.doctor_id">@item.firstname</option>
 				}
@@ -50,25 +53,25 @@
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">diagnosis</label>
 		<div class="col-sm-6">
-			<textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" value="@Model.medicInfo.diagnosis"></textarea>
+			<textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" value="@Model.medicInfo.diagnosis">@Model.medicInfo.diagnosis</textarea>
 		</div>
 	</div>
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Treatment</label>
 		<div class="col-sm-6">
-			<textarea class="form-control" id="treatment" name="treatment" rows="3" value="@Model.medicInfo.treatment"></textarea>
+			<textarea class="form-control" id="treatment" name="treatment" rows="3" value="@Model.medicInfo.treatment">@Model.medicInfo.treatment</textarea>
 		</div>
 	</div>
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Medication</label>
 		<div class="col-sm-6">
-			<textarea class="form-control" id="Medication" name="medications" rows="3" value="@Model.medicInfo.medications"></textarea>
+			<textarea class="form-control" id="Medication" name="medications" rows="3" value="@Model.medicInfo.medications">@Model.medicInfo.medications</textarea>
 		</div>
 	</div>
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Notes</label>
 		<div class="col-sm-6">
-			<textarea class="form-control" id="Notes" name="notes" rows="3" value="@Model.medicInfo.notes"></textarea>
+			<textarea class="form-control" id="Notes" name="notes" rows="3" value="@Model.medicInfo.notes">@Model.medicInfo.notes</textarea>
 		</div>
 	</div>
 	
@@ -87,7 +90,7 @@
 
 	<div class="row mb-3">
 		<div class="offset-sm-3 col-sm-3 d-grid">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Update</button>
 		</div>
 		<div class="col-sm-3 d-grid">
 			<a class="btn btn-outline-primary" href="/" role="button">Cancel</a>

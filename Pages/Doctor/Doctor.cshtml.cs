@@ -66,8 +66,6 @@ namespace healthcareMIS.Pages.Doctor
 			doctorInfo.address = "";
 
 			successMessage = "New Doctor Successfully Added";
-
-			Response.Redirect("/Doctor/Doctor");
 		}
 	}
 

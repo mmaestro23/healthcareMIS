@@ -1,0 +1,38 @@
+﻿@page
+@model healthcareMIS.Pages.Appointments.ViewAppointmentsModel
+@{
+}
+
+<br />
+<h2>Medical Records</h2>
+<a href="/Medical Record/MedicalHistory" class="btn btn-primary btn-sm">Create</a>
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Patient</th>
+            <th scope="col">doctor Time</th>
+            <th scope="col">appointment_type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.list)
+        {
+            var patient = Model.Patient.FirstOrDefault(p => p.id == int.Parse(item.patient_id));
+            var doctor = Model.Doctor.FirstOrDefault(d => d.doctor_id == int.Parse(item.doctor_id));
+
+            <tr>
+                <td scope="row">@item.appointment_id</td>
+                <td>@(patient != null ? patient.name : "Unknown")</td>
+                <td>@(doctor != null ? doctor.firstname : "Unknown")</td>
+                <td>@item.appointment_type</td>
+                <td>
+                    <a href="/MedicalRecord/Update?appointment_type=@item.appointment_type" class="btn btn-primary btn-sm">REVIEW</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@page
+@model healthcareMIS.Pages.Patients.ViewPatientsModel
+@{
+}
+
+<br />
+<h2>Patients</h2>
+<a href="/Patients/Patient" class="btn btn-primary btn-sm">Create</a>
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">firstname</th>
+            <th scope="col">lastname</th>
+            <th scope="col">specialization</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.patients)
+        {
+            <tr>
+                <td scope="row">@item.id</td>
+                <td>@item.name</td>
+                <td>@item.email</td>
+                <td>@item.phone</td>
+                <td>
+                    <a href="/Patients/UpdatePatient?id=@item.id" class="btn btn-primary btn-sm">REVIEW</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

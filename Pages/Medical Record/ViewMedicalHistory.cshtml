@@ -1,0 +1,61 @@
+﻿@page
+@model healthcareMIS.Pages.Medical_Record.ViewMedicalHistoryModel
+@{
+}
+
+<br/>
+<h2>Medical Records</h2>
+<a href="/Medical Record/MedicalHistory" class="btn btn-primary btn-sm">Create</a>
+<br/>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">patient</th>
+            <th scope="col">doctor</th>
+            <th scope="col">diagnisis</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.list)
+        {
+            var patient = Model.Patient.FirstOrDefault(p => p.id == int.Parse(item.patient_id));
+            var doctor = Model.Doctor.FirstOrDefault(d => d.doctor_id == int.Parse(item.doctor_id));
+
+            <tr>
+                <td scope="row">@item.mh_id</td>
+                <td>@(patient != null ? patient.name : "Unknown")</td>
+                <td>@(doctor != null ? doctor.firstname : "Unknown")</td>
+                <td>@item.diagnosis</td>
+                <td>
+                    <a href="/MedicalRecord/Update?mh_id=@item.mh_id" class="btn btn-primary btn-sm">REVIEW</a>
+                </td>
+            </tr>
+        }
+
+        @*@foreach (var item in Model.list)
+        {
+            <tr>
+                <td scope="row">@item.mh_id</td>
+                <td>@item.patient_id</td>
+                <td>@item.doctor_id</td>
+                <td>@item.diagnosis</td>
+                <td>
+                    <a href="/Medical Record/Update?mh_id=@item.mh_id" class="btn btn-primary btn-sm">REVIEW</a>
+                </td>
+            </tr>
+        }*@
+
+        @*@foreach (var medicInfo in Model.list)
+        {
+                <tr>
+                    <th scope="row">@Model.medicInfo.mh_id</th>
+                    <th scope="row">@Model.medicInfo.patient_id</th>
+                    <th scope="row">@Model.medicInfo.doctor_id</th>
+                    <th scope="row">@Model.medicInfo.diagnosis</th>
+                </tr>
+        }*@
+    </tbody>
+</table>

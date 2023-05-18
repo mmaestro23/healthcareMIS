@@ -1,6 +1,9 @@
 using System.Data.SqlClient;
+using healthcareMIS.Pages.Doctor;
+using healthcareMIS.Pages.Patients;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static healthcareMIS.Pages.Medical_Record.MedicalHistoryModel;
 
 namespace healthcareMIS.Pages.Appointments
 {
@@ -14,35 +17,37 @@ namespace healthcareMIS.Pages.Appointments
 		public String successMessage = "";
 		public IActionResult OnGet()
 		{
-			String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=healthcareMIS;Integrated Security=True";
+			String connectionString = "Data Source=DRKST-MTTR\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
 			using (SqlConnection con = new SqlConnection(connectionString))
 			{
 				con.Open();
-				String sqlQuery = "SELECT * FROM patients";
-				using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+				string query = "SELECT id, name AS full_name FROM patients";
+				using (SqlCommand command = new SqlCommand(query, con))
 				{
-					using (SqlDataReader reader = cmd.ExecuteReader())
+					using (SqlDataReader reader = command.ExecuteReader())
 					{
 						while (reader.Read())
 						{
 							Patients patients = new Patients();
 							patients.id = reader.GetInt32(0);
 							patients.name = reader.GetString(1);
+
 							patient.Add(patients);
 						}
 					}
 				}
-				String sqlQueryy = "SELECT * FROM doctor";
-				using (SqlCommand cmd = new SqlCommand(sqlQueryy, con))
+				String dquery = "SELECT doctor_id, CONCAT(firstname, ' ', lastname) AS full_name FROM doctor";
+
+				using (SqlCommand command = new SqlCommand(dquery, con))
 				{
-					using (SqlDataReader reader = cmd.ExecuteReader())
+					using (SqlDataReader reader = command.ExecuteReader())
 					{
 						while (reader.Read())
 						{
 							Doctor doctors = new Doctor();
-							doctors.doctor_id = reader.GetInt32(0); 
+							doctors.doctor_id = reader.GetInt32(0);
 							doctors.firstname = reader.GetString(1);
-							doctors.lastname = reader.GetString(2);
+
 							doctor.Add(doctors);
 						}
 					}
@@ -52,27 +57,31 @@ namespace healthcareMIS.Pages.Appointments
 		}
 		public void OnPost()
 		{
-			appointmentInfo.patient_id = Convert.ToInt32(Request.Form["patient_id"]);
-			appointmentInfo.doctor_id = Convert.ToInt32(Request.Form["doctor_id"]);
+			string selectedPatientId = Request.Form["patient_id"];
+			if (int.TryParse(selectedPatientId, out int patientId))
+			{
+				appointmentInfo.patient_id = patientId;
+			}
+			string selectedDoctorId = Request.Form["doctor_id"];
+			if (int.TryParse(selectedDoctorId, out int doctorId))
+			{
+				appointmentInfo.doctor_id = doctorId;
+			}
 			appointmentInfo.appointment_date = Convert.ToDateTime(Request.Form["appointment_date"]);
 			appointmentInfo.appointment_time = Request.Form["appointment_time"];
 			appointmentInfo.appointment_type = Request.Form["appointment_type"];
 			appointmentInfo.notes = Request.Form["notes"];
 
 
-			/*            if (vaccinationRecord.CitizenId == 0 || vaccinationRecord.Vaccine.Length == 0)
-						{
-							errorMessage = "All fields are required";
-							return;
-						}*/
 
 			try
 			{
-				String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=healthcareMIS;Integrated Security=True";
+				String connectionString = "Data Source=DRKST-MTTR\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
 				using (SqlConnection con = new SqlConnection(connectionString))
 				{
 					con.Open();
-					String sqlQuery = "INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time, appointment_type, notes) VALUES(@patient_id,@doctor_id,@appointment_date,@appointment_time,@appointment_type,@notes)";
+					String sqlQuery = "INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time, appointment_type, notes) " +
+						"VALUES(@patient_id,@doctor_id,@appointment_date,@appointment_time,@appointment_type,@notes)";
 					using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
 					{
 						cmd.Parameters.AddWithValue("@patient_id", appointmentInfo.patient_id);
@@ -88,14 +97,14 @@ namespace healthcareMIS.Pages.Appointments
 			}
 			catch (Exception ex)
 			{
-				errorMessage = ex.Message;
+				errorMessage = "somememe";
 				return;
 			}
 			appointmentInfo.appointment_date = null;
 			appointmentInfo.appointment_time = "";
 			appointmentInfo.appointment_type = "";
 			appointmentInfo.notes = "";
-			Response.Redirect("/Appointments/Appointments");
+			successMessage = "Appointment set successfully";
 		}
 	}
 

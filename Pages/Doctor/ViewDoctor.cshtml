@@ -1,0 +1,38 @@
+﻿@page
+@model healthcareMIS.Pages.Doctor.ViewDoctorModel
+@{
+}
+
+<br />
+<h2>Doctors</h2>
+<a href="/Doctor/Doctor" class="btn btn-primary btn-sm">Create</a>
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">firstname</th>
+            <th scope="col">lastname</th>
+            <th scope="col">specialization</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.doctors)
+        {
+        <tr>
+        <td scope="row">@item.doctor_id</td>
+        <td>@item.firstname</td>
+        <td>@item.lastname</td>
+        <td>@item.specialization</td>
+        <td>
+           <a href="/Doctor/UpdateDoctor?doctor_id=@item.doctor_id" class="btn btn-primary btn-sm">REVIEW</a>
+                    <a href="/Doctor/DeleteDoctor?doctor_id=@item.doctor_id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this doctor?')">DELETE</a>
+        </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

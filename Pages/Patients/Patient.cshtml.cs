@@ -29,7 +29,7 @@ namespace healthcareMIS.Pages.Patients
 
 			try
 			{
-				String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=healthcareMIS;Integrated Security=True";
+				String connectionString = "Data Source=DRKST-MTTR\\SQLEXPRESS;Initial Catalog=healthcareMIS;Integrated Security=True";
 
 				using (SqlConnection connection = new SqlConnection(connectionString))
 				{
@@ -62,7 +62,6 @@ namespace healthcareMIS.Pages.Patients
 
 			successMessage = "New Patient Successfully Added";
 
-			Response.Redirect("/Patients/Patient");
 		}
 	}
 
