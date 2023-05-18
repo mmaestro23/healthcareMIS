@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
 namespace healthcareMIS.Pages.Patients
 {
+	[Authorize]
     public class PatientModel : PageModel
     {
 		public PatientInfo patientInfo = new PatientInfo();

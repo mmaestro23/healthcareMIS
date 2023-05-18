@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,33 +21,39 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Patients/ViewPatients">Patients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Doctor/ViewDoctor">Doctor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Medical Record/ViewMedicalHistory">Medical History List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Medical Record/MedicalHistory">MedicalHistory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Appointments">Appointments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Register/Register">Register</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Patients/Patient">Patients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Doctor/Doctor">Doctor</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Medical Record/MedicalHistory">Medical History</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Appointments">Appointments</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" asp-area="" asp-page="/Logout">Logout</a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav d-flex justify-content-end">
+                                <li class="nav-item">
+                                    <a asp-page="/Login" class="btn btn-primary">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-page="/register" class="btn">Register</a>
+                                </li>
+                            </ul>
+                        }
                 </div>
             </div>
         </nav>

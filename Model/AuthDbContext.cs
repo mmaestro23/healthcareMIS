@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace healthcareMIS.Model
 {
-    public class AuthDbContext: IdentityDbContext
-    {
-        public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) 
+	public class AuthDbContext: IdentityDbContext
+	{
+        public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
 
         }
